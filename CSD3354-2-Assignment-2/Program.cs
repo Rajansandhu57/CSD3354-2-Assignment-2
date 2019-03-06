@@ -25,35 +25,31 @@ namespace CSD3354_2_Assignment_2
             }
         }
 
+        public delegate int MyDelegate(out int i);
+
         public class DelegateExercises
         {
-            public delegate int MyDelegate(int intValue);
-
-            int Method1(int intMethod1)
+            int Method1(out int i)
             {
-                return intMethod1 * 2;
-            }
-
-            int Method2(int intMethod1)
-            {
-                return intMethod1 * 10;
-            }
-
-            public void Method4(MyDelegate myDelegate)
-            {
-                int result = myDelegate(10);
-                Console.WriteLine(result);
+                System.Console.WriteLine("Method1");
+                i = 10;
+                return 0;
             }
 
             public void Method3()
             {
                 MyDelegate myDelegate = new MyDelegate(Method1);
-                Method4(myDelegate);
-                myDelegate = new MyDelegate(Method2);
-                Method4(myDelegate);
+                MyDelegate myDelegate1 = new MyDelegate(Method1);
+                MyDelegate myDelegate2 = myDelegate + myDelegate1;
+                int intValue;
+                myDelegate2(out intValue);
+
             }
         }
+
     }
 }
+
+
 
 
