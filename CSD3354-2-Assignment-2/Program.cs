@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 
 namespace CSD3354_2_Assignment_2
 {
+    using System;
+
     namespace DelegatesAndEvents
     {
         public class Program
@@ -19,27 +21,27 @@ namespace CSD3354_2_Assignment_2
             {
                 DelegateExercises delegateExercises = new DelegateExercises();
                 delegateExercises.Method3();
+                Console.ReadLine();
             }
+
         }
+        public delegate void MyDelegate();
 
         public class DelegateExercises
         {
-            public delegate int MyDelegate();
-
             void Method1()
             {
-                System.Console.WriteLine("MyDelegate");
+                System.Console.WriteLine("Method1");
             }
-
             public void Method3()
             {
                 MyDelegate myDelegate = new MyDelegate(Method1);
                 myDelegate();
             }
         }
+
     }
 }
-
 
 
 
