@@ -15,41 +15,41 @@ namespace CSD3354_2_Assignment_2
 
     namespace DelegatesAndEvents
     {
-        public class Program
+        using System;
+
+        delegate void ExampleDelegate(string xyz);
+
+        class Program
         {
+            public static void Method1(string xyz)
+            {
+                Console.WriteLine(xyz + " Method1");
+            }
+
+            public static void Method2(string xyz)
+            {
+                Console.WriteLine(xyz + " Method2");
+            }
+
             public static void Main()
             {
-                DelegateExercises delegateExercises = new DelegateExercises();
-                try
-                {
-                    delegateExercises.Method3();
-                    Console.ReadLine();
-                }
-                catch (System.Exception ex)
-                {
-                    System.Console.WriteLine("Exception Occurred.");
-                    Console.ReadLine();
+                ExampleDelegate ex1Delegate, ex2Delegate, ex3Delegate, myDelegate;
 
-                }
+                ex1Delegate = new ExampleDelegate(Method1);
+                ex2Delegate = new ExampleDelegate(Method2);
+                ex3Delegate = ex1Delegate + ex2Delegate;
+                myDelegate = ex1Delegate - ex2Delegate;
+                ex1Delegate("AAA");
+                ex2Delegate("BBB");
+                ex3Delegate("CCC");
+                myDelegate("DDD");
+                myDelegate = ex3Delegate - ex1Delegate;
+                myDelegate("EEE");
+                myDelegate = ex3Delegate - ex2Delegate;
+                myDelegate("FFF");
+                Console.ReadLine();
             }
         }
-
-        public delegate void MyDelegate();
-
-        public class DelegateExercises
-        {
-            void Method1()
-            {
-                throw new System.Exception();
-            }
-
-            public void Method3()
-            {
-                MyDelegate myDelegate = new MyDelegate(Method1);
-                myDelegate();
-            }
-        }
-
     }
 }
 
