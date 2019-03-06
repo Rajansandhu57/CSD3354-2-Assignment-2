@@ -15,35 +15,39 @@ namespace CSD3354_2_Assignment_2
 
     namespace DelegatesAndEvents
     {
-        public class DelegateExercises
+        public class Program
         {
-            public delegate void MyDelegate();
-            void Method1(int i)
-            {
-                Console.WriteLine("Method1");
-                Console.ReadLine();
-            }
-            public void Method2()
-            {
-                MyDelegate myDelegate = new MyDelegate(Method1);
-                myDelegate();
-            }
-
-        }
-    }
-    namespace DelegatesAndEvents
-    {
-        class Program
-        {
-            static void Main(string[] args)
+            public static void Main()
             {
                 DelegateExercises delegateExercises = new DelegateExercises();
-                delegateExercises.Method2();
+                delegateExercises.Method3();
+                Console.ReadLine();
+
             }
         }
+
+        public delegate void MyDelegate(ref int intValue);
+
+        public class DelegateExercises
+        {
+            void Method1(ref int intValue)
+            {
+                intValue = intValue + 5;
+                System.Console.WriteLine("Method1 " + intValue);
+            }
+
+            public void Method3()
+            {
+                MyDelegate myDelegate = new MyDelegate(Method1);
+                MyDelegate myDelegate1 = new MyDelegate(Method1);
+                MyDelegate myDelegate2 = myDelegate + myDelegate1;
+                int intParameter = 5;
+                myDelegate2(ref intParameter);
+            }
+        }
+
     }
 }
-
 
 
 
