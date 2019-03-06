@@ -11,14 +11,31 @@ using System.Threading.Tasks;
 
 namespace CSD3354_2_Assignment_2
 {
-    
-public delegate void MyDelegate();
-
-    public class DelegateExercises
+    namespace DelegatesAndEvents
     {
-        void Method3()
+        public class Program
         {
-            System.Console.WriteLine(MyDelegate.ToString());
+            public static void Main()
+            {
+                DelegateExercises delegateExercises = new DelegateExercises();
+                delegateExercises.Method3();
+            }
+        }
+
+        public class DelegateExercises
+        {
+            public delegate int MyDelegate();
+
+            void Method1()
+            {
+                System.Console.WriteLine("MyDelegate");
+            }
+
+            public void Method3()
+            {
+                MyDelegate myDelegate = new MyDelegate(Method1);
+                myDelegate();
+            }
         }
     }
 }
